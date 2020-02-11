@@ -45,30 +45,61 @@ else:
 
 # Okay. With the input now tidied up...
 
-# If sqrt(n) is a whole number, n isn't prime.
 import math
 
+# If sqrt(n) is a whole number, n isn't prime.
 if math.sqrt(n).is_integer():
     print(f"Carnun's hacky algorithm says: {n} is not prime.")
-    exit()
+    # exit()
 
 # If no, do any m < sqrt(n), where m >= 2, divide into n without remainder?
-m = int(math.sqrt(n))
-while m > 1:
-    # If yes, n isn't prime.
-    if n % m == 0:
+else:
+    m = int(math.sqrt(n))
+    divisorFound = False
+    while m > 1:
+        if n % m == 0:
+            divisorFound = True
+            break
+        m -= 1
+    
+    if divisorFound:
+        # If yes, n isn't prime.
         print(f"Carnun's hacky algorithm says: {n} is not prime.")
-        exit()
-
-    m -= 1
-
-# If no, n is prime.
-print(f"Carnun's hacky algorithm says: {n} is prime!")
-exit()
+    else:
+        # If no, n is prime.
+        print(f"Carnun's hacky algorithm says: {n} is prime!")
 
 # So... it works! But now I'm thinking: There's no need to check even numbers.
 # Or multiples of three. Or five. Etc.
 # Which is exactly the idea behind The Sieve!
 
+# Need an array of bools, to keep track of whether an integer m, where 1 < m < sqrt(n), has been visited.
+visited = [False for i in range(int(math.sqrt(n)))]
+toCheck = [i + 2 for i in range(int(math.sqrt(n)))]
 
-    
+### Helper
+def checkNotPrime(n, m):
+    if n == 2:
+        print(f"The Sieve of Erastosthenes says: {n} is prime!")
+        exit()
+    if n % m == 0:
+        print(f"The Sieve of Erastosthenes says: {n} is not prime.")
+        exit()
+###
+
+for m in toCheck:
+    if not visited[m - 2]:
+        visited[m - 2] = True
+
+        checkNotPrime(n, m)
+
+        j = 0
+        while m**2 + m*j < math.sqrt(n):
+            visited[(m**2 + m*j) - 2] = True
+
+            checkNotPrime(n, m)
+
+            j += 1
+
+print(f"The Sieve of Erastosthenes says: {n} is prime!")
+exit()

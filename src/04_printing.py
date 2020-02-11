@@ -15,6 +15,7 @@ print('x is %i, y is %2.2f, z is "%s"' %(x, y, z))
 
 # Use the 'format' string method to print the same thing
 print('x is {}, y is {}, z is "{}"'.format(x, y.__round__(2), z))
+# print('x is {0}, y is {1:2.2f}, z is "{2}"'.format(x, y, z))
 
 # Finally, print the same thing using an f-string
 print(f'x is {x}, y is {y.__round__(2)}, z is "{z}"')
