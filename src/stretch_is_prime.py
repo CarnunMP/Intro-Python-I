@@ -49,7 +49,7 @@ else:
 import math
 
 if math.sqrt(n).is_integer():
-    print(f"{n} is not prime.")
+    print(f"Carnun's hacky algorithm says: {n} is not prime.")
     exit()
 
 # If no, do any m < sqrt(n), where m >= 2, divide into n without remainder?
@@ -57,13 +57,13 @@ m = int(math.sqrt(n))
 while m > 1:
     # If yes, n isn't prime.
     if n % m == 0:
-        print(f"{n} is not prime.")
+        print(f"Carnun's hacky algorithm says: {n} is not prime.")
         exit()
 
     m -= 1
 
 # If no, n is prime.
-print(f"{n} is prime!")
+print(f"Carnun's hacky algorithm says: {n} is prime!")
 exit()
 
 # So... it works! But now I'm thinking: There's no need to check even numbers.
