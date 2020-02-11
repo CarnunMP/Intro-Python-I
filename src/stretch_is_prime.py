@@ -79,7 +79,7 @@ toCheck = [i + 2 for i in range(int(math.sqrt(n)))]
 
 ### Helper
 def checkNotPrime(n, m):
-    if n == 2:
+    if n == 2: # Need a special case for n = 2!
         print(f"The Sieve of Erastosthenes says: {n} is prime!")
         exit()
     if n % m == 0:
@@ -94,7 +94,7 @@ for m in toCheck:
         checkNotPrime(n, m)
 
         j = 0
-        while m**2 + m*j < math.sqrt(n):
+        while m**2 + m*j < math.sqrt(n): # Can start checking from m^2 here as any multiple of m less than m^2 has already been visited.*
             visited[(m**2 + m*j) - 2] = True
 
             checkNotPrime(n, m)
@@ -103,3 +103,6 @@ for m in toCheck:
 
 print(f"The Sieve of Erastosthenes says: {n} is prime!")
 exit()
+
+# *E.g. if m is 4, multiples of 4 less than 16 are 12, 8, and 4. But 4 has already been visited by line 97; 8 = 4 x 2 has already
+# been visited as a multiple of 2 (greater than 2^2); and 12 = 4 x 3 has already been visited as a multiple of 3 (greater than 3^2).
