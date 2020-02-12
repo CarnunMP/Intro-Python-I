@@ -2,3 +2,8 @@
 # (try doing the same thing in the JS console and see what it outputs)
 
 # YOUR CODE HERE
+from math import pow
+
+print(pow(2, 65536))
+
+# Math.pow(2, 65536) returns Infinity in the Js console, and prints undefined (?)...
